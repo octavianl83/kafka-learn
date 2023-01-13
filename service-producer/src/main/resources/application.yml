@@ -1,0 +1,63 @@
+---
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    admin:
+      properties:
+        bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+    template:
+      default-topic: "message"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    admin:
+      properties:
+        bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+    template:
+      default-topic: "message"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    admin:
+      properties:
+        bootstrap-servers: localhost:9092, localhost:9093, localhost:9094
+    template:
+      default-topic: "message"
+
+---
+
+spring:
+  application:
+    name: service-producer1
+  profiles:
+    active: "prod"
+
+server:
+  port: 7100
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8671/eureka
