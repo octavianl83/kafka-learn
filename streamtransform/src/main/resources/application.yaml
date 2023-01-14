@@ -10,9 +10,11 @@ spring:
       kafka:
         streams:
           binder:
+            deserialization-exception-handler: sendToDlq
             applicationId: transformstreams
             brokers: localhost:9092
             configuration:
+              processing.guarantee: exactly_once_v2
               default:
                 key:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
@@ -22,3 +24,5 @@ spring:
             output-channel-1:
               producer:
                 valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+              consumer:
+                dlqName: topic-error

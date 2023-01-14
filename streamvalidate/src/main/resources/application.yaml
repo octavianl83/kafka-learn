@@ -5,20 +5,22 @@ spring:
       bindings:
         input-channel-1:
           destination: validate2
-        output-channel-1:
-          destination: ruleengine
+#        output-channel-1:
+#          destination: ruleengine
       kafka:
         streams:
           binder:
+            deserialization-exception-handler: skipAndContinue
             applicationId: validatestreams
             brokers: localhost:9092
             configuration:
+              processing.guarantee: exactly_once_v2
               default:
                 key:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 value:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-          bindings:
-            output-channel-1:
-              producer:
-                valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#          bindings:
+#            output-channel-1:
+#              producer:
+#                valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde

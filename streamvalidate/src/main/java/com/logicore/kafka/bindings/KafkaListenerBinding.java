@@ -10,8 +10,8 @@ public interface KafkaListenerBinding {
     @Input("input-channel-1")
     KStream<String, IncomingMessage> inputStream1();
 
-    @Output("output-channel-1")
-    KStream<String, IncomingMessage> outputStream1();
+//    @Output("output-channel-1")
+//    KStream<String, IncomingMessage> outputStream1();
 
 //    @Input("input-channel-2")
 //    KStream<String, IncomingMessage> inputStream2();
